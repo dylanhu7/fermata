@@ -21,7 +21,13 @@ A macOS menu bar app that keeps your audio on the right device. Rank your speake
 
 ## Install
 
-Fermata needs macOS 27 on Apple silicon. Download `Fermata.zip` from the [latest release](../../releases/latest), unzip it and move Fermata to Applications. Releases are signed and notarized.
+Fermata needs macOS 27 on Apple silicon. With [Homebrew](https://brew.sh):
+
+```bash
+brew install --cask dylanhu7/tap/fermata
+```
+
+Or download the zip from the [latest release](../../releases/latest), unzip it and move Fermata to Applications. Releases are signed and notarized.
 
 To build it yourself with Xcode 27.2 or later:
 

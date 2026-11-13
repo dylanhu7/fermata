@@ -3,6 +3,7 @@
 #   ./build.sh           Release build into dist/, signed with Apple Development for this Mac
 #   ./build.sh install   the same, then copy to /Applications and (re)launch it
 #   ./build.sh release   Developer ID build, notarized and stapled, zipped into dist/ to share
+#                        as Fermata-<version>.zip
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -10,7 +11,9 @@ cd "$(dirname "$0")"
 NOTARY_PROFILE="${NOTARY_PROFILE:-fermata-notary}"
 
 if [ "${1:-}" = "release" ]; then
-  TEAM_ID=$(xcodebuild -scheme Fermata -showBuildSettings 2>/dev/null | awk '$1 == "DEVELOPMENT_TEAM" { print $3 }')
+  SETTINGS=$(xcodebuild -scheme Fermata -showBuildSettings 2>/dev/null)
+  TEAM_ID=$(echo "$SETTINGS" | awk '$1 == "DEVELOPMENT_TEAM" { print $3 }')
+  ZIP="dist/Fermata-$(echo "$SETTINGS" | awk '$1 == "MARKETING_VERSION" { print $3 }').zip"
   if ! xcrun notarytool history --keychain-profile "$NOTARY_PROFILE" >/dev/null 2>&1; then
     echo "No notarization credentials saved as \"$NOTARY_PROFILE\". Create an app-specific password at"
     echo "account.apple.com, then run:"
@@ -41,19 +44,19 @@ PLIST
     -exportPath .build/export -exportOptionsPlist .build/ExportOptions.plist -allowProvisioningUpdates
 
   mkdir -p dist
-  rm -rf dist/Fermata.app dist/Fermata.zip
+  rm -rf dist/Fermata.app dist/Fermata*.zip
   cp -R .build/export/Fermata.app dist/
-  ditto -c -k --keepParent dist/Fermata.app dist/Fermata.zip
+  ditto -c -k --keepParent dist/Fermata.app "$ZIP"
 
   echo "Notarizing (this usually takes a few minutes)..."
-  xcrun notarytool submit dist/Fermata.zip --keychain-profile "$NOTARY_PROFILE" --wait
+  xcrun notarytool submit "$ZIP" --keychain-profile "$NOTARY_PROFILE" --wait
   xcrun stapler staple dist/Fermata.app
   # Re-zip so the download carries the stapled ticket.
-  rm dist/Fermata.zip
-  ditto -c -k --keepParent dist/Fermata.app dist/Fermata.zip
+  rm "$ZIP"
+  ditto -c -k --keepParent dist/Fermata.app "$ZIP"
   spctl --assess --type execute --verbose dist/Fermata.app
   echo ""
-  echo "Release ready: dist/Fermata.zip"
+  echo "Release ready: $ZIP"
   exit 0
 fi
 
