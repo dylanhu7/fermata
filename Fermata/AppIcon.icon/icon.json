@@ -1,0 +1,146 @@
+{
+  "fill-specializations": [
+    {
+      "value": {
+        "linear-gradient": [
+          "srgb:1.00000,1.00000,1.00800,1.00000",
+          "srgb:0.91400,0.91400,0.92200,1.00000"
+        ],
+        "orientation": {
+          "start": {
+            "x": 0.5,
+            "y": 0
+          },
+          "stop": {
+            "x": 0.5,
+            "y": 1
+          }
+        }
+      }
+    },
+    {
+      "appearance": "dark",
+      "value": {
+        "linear-gradient": [
+          "srgb:0.17300,0.17300,0.18100,1.00000",
+          "srgb:0.07100,0.07100,0.07900,1.00000"
+        ],
+        "orientation": {
+          "start": {
+            "x": 0.5,
+            "y": 0
+          },
+          "stop": {
+            "x": 0.5,
+            "y": 1
+          }
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "name": "Fermata",
+      "layers": [
+        {
+          "image-name": "arc-1.svg",
+          "name": "Fermata",
+          "fill-specializations": [
+            {
+              "value": {
+                "solid": "srgb:0.09400,0.09400,0.09400,1.00000"
+              }
+            },
+            {
+              "appearance": "dark",
+              "value": {
+                "solid": "srgb:0.95700,0.95700,0.95700,1.00000"
+              }
+            },
+            {
+              "appearance": "tinted",
+              "value": {
+                "solid": "srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
+          ]
+        },
+        {
+          "image-name": "dot.svg",
+          "name": "Dot",
+          "fill-specializations": [
+            {
+              "value": {
+                "solid": "srgb:0.09400,0.09400,0.09400,1.00000"
+              }
+            },
+            {
+              "appearance": "dark",
+              "value": {
+                "solid": "srgb:0.95700,0.95700,0.95700,1.00000"
+              }
+            },
+            {
+              "appearance": "tinted",
+              "value": {
+                "solid": "srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
+          ]
+        }
+      ],
+      "shadow": {
+        "kind": "layer-color",
+        "opacity": 0.35
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.1
+      },
+      "specular": true
+    },
+    {
+      "name": "Waves",
+      "layers": [
+        {
+          "image-name": "arc-2.svg",
+          "name": "Wave 2",
+          "fill-specializations": [
+            {
+              "value": {
+                "solid": "srgb:0.09400,0.09400,0.09400,1.00000"
+              }
+            },
+            {
+              "appearance": "dark",
+              "value": {
+                "solid": "srgb:0.95700,0.95700,0.95700,1.00000"
+              }
+            },
+            {
+              "appearance": "tinted",
+              "value": {
+                "solid": "srgb:1.00000,1.00000,1.00000,1.00000"
+              }
+            }
+          ],
+          "opacity": 0.45
+        }
+      ],
+      "shadow": {
+        "kind": "layer-color",
+        "opacity": 0.2
+      },
+      "translucency": {
+        "enabled": true,
+        "value": 0.35
+      },
+      "specular": true
+    }
+  ],
+  "supported-platforms": {
+    "squares": [
+      "macOS"
+    ]
+  }
+}
